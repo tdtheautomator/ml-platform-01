@@ -33,6 +33,7 @@ variable "account_kind" {}
 variable "account_tier" {}
 variable "account_replication_type" {}
 variable "access_tier" {}
+variable "hns_enabled" {}
 
 #variable "clientId" {}
 #variable "clientSecret" {}

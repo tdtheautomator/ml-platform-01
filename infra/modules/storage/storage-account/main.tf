@@ -12,5 +12,6 @@ resource "azurerm_storage_account" "storageacc" {
   https_traffic_only_enabled      = true
   allow_nested_items_to_be_public = false
   tags                            = local.default_tags
+  is_hns_enabled                  = var.hns_enabled
 }
 #--------------------------------------------------------------------

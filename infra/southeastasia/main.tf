@@ -1,6 +1,6 @@
 
 module "resourcegroup" {
-  source          = "./modules/core/resourcegroup"
+  source          = "../modules/core/resourcegroup"
   location        = var.location
   department      = var.department
   environment     = var.environment
@@ -10,7 +10,7 @@ module "resourcegroup" {
 
 
 module "networking" {
-  source             = "./modules/networking/net-multi-tier"
+  source             = "../modules/networking/net-multi-tier"
   location           = var.location
   department         = var.department
   environment        = var.environment
@@ -24,7 +24,7 @@ module "networking" {
 }
 
 module "storage" {
-  source                   = "./modules/storage/storage-account"
+  source                   = "../modules/storage/storage-account"
   location                 = var.location
   department               = var.department
   environment              = var.environment
@@ -33,6 +33,7 @@ module "storage" {
   account_tier             = var.account_tier
   account_replication_type = var.account_replication_type
   access_tier              = var.access_tier
+  hns_enabled              = var.hns_enabled
   depends_on = [
     module.resourcegroup,
     module.networking

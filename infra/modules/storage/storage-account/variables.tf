@@ -9,10 +9,10 @@ variable "rg_name" {
 }
 
 variable "department" {
-  type    = string
+  type = string
 }
 variable "environment" {
-  type    = string
+  type = string
 }
 
 variable "appname" {
@@ -20,31 +20,36 @@ variable "appname" {
 }
 
 variable "deployment-type" {
-  type = string
+  type    = string
   default = "terraform"
 }
 
 #-----------------------------------------------------------
 
 variable "account_kind" {
-  type = string
+  type    = string
   default = "StorageV2"
 }
 
 variable "account_tier" {
-  type = string
+  type    = string
   default = "Standard"
 }
 
 variable "account_replication_type" {
-  type = string
+  type    = string
   default = "LRS"
 }
 
 
 variable "access_tier" {
-  type = string
+  type    = string
   default = "Hot"
+}
+
+variable "hns_enabled" {
+  type    = bool
+  default = false
 }
 
 #-----------------------------------------------------------
