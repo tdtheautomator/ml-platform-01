@@ -3,6 +3,13 @@
 variable "location" {
   type = string
 }
+
+variable "rg_name" {
+  type    = string
+  default = "null"
+}
+
+
 variable "department" {
   type = string
 }

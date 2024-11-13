@@ -1,3 +1,3 @@
-output "random_str" {
+output "output" {
   value = local.output
 }

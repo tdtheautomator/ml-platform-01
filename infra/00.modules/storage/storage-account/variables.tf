@@ -8,23 +8,15 @@ variable "rg_name" {
   default = null
 }
 
-variable "department" {
-  type = string
-}
-variable "environment" {
-  type = string
-}
-
-variable "appname" {
-  type = string
-}
-
-variable "deployment-type" {
-  type    = string
-  default = "terraform"
+variable "default_tags" {
+  type = map(string)
 }
 
 #-----------------------------------------------------------
+
+variable "storage_acc_name" {
+  type    = string
+}
 
 variable "account_kind" {
   type    = string

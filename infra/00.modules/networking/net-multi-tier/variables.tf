@@ -1,24 +1,23 @@
 variable "location" {
   type = string
 }
-variable "department" {
-  type    = string
-}
-variable "environment" {
-  type    = string
-}
 
-variable "appname" {
-  type = string
-}
-
-variable "deployment-type" {
-  type = string
-  default = "terraform"
-}
 variable "rg_name" {
   type    = string
   default = null
+}
+
+variable "default_tags" {
+type = map(string)
+default = null
+}
+
+variable "vnet_name" {
+  type    = string
+}
+
+variable "netwatch_name" {
+  type    = string
 }
 
 variable "vnet_address_space" {
