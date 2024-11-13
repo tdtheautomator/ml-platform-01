@@ -1,6 +1,7 @@
 #----------------------Randoms-----------------------------------
 resource "random_string" "randomstr" {
-  length  = 8
+  length  = 3
+  lower = true
   numeric = false
   upper   = false
   special = false
@@ -8,7 +9,7 @@ resource "random_string" "randomstr" {
 resource "random_uuid" "randomuuid" {
 }
 resource "random_integer" "randomint" {
-  min = 111
+  min = 001
   max = 999
 }
 locals {

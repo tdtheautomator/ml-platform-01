@@ -1,6 +1,6 @@
 
 module "resourcegroup" {
-  source          = "../modules/core/resourcegroup"
+  source          = "../00.modules/core/rg"
   location        = var.location
   department      = var.department
   environment     = var.environment
@@ -10,7 +10,7 @@ module "resourcegroup" {
 
 
 module "networking" {
-  source             = "../modules/networking/net-multi-tier"
+  source             = "../00.modules/networking/net-multi-tier"
   location           = var.location
   department         = var.department
   environment        = var.environment
@@ -24,7 +24,7 @@ module "networking" {
 }
 
 module "storage" {
-  source                   = "../modules/storage/storage-account"
+  source                   = "../00.modules/storage/storage-account"
   location                 = var.location
   department               = var.department
   environment              = var.environment
