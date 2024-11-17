@@ -32,9 +32,11 @@ variable "vnet_address_space" {
 }
 
 variable "vnet_subnets" {
-  type = map(any)
 }
 
+variable "dbricks_subnets" {
+  type = map(any)
+}
 
 variable "account_kind" {}
 variable "account_tier" {}

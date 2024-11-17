@@ -4,7 +4,7 @@ resource "azurerm_network_watcher" "netwatcher" {
   name                = var.netwatch_name
   location            = var.location
   resource_group_name = var.rg_name
-  tags = var.default_tags
+  tags                = var.default_tags
 }
 
 
@@ -29,6 +29,7 @@ resource "azurerm_subnet" "subnets" {
     azurerm_virtual_network.vnet
   ]
 }
+
 #-----------------------------------------------------------------------------------
 
 #-----------------Creating Network Security Groups----------------------------------
@@ -37,9 +38,22 @@ resource "azurerm_network_security_group" "nsg" {
     azurerm_subnet.subnets
   ]
   for_each            = var.vnet_subnets
-  name                = "${var.vnet_name}-${each.value["name"]}-nsg"
+  name                = each.value["nsg"]
   location            = var.location
   resource_group_name = var.rg_name
   tags                = var.default_tags
 }
+#-----------------Creating Network Security Groups Association----------------------------------
+
+resource "azurerm_subnet_network_security_group_association" "nsg_asso" {
+  for_each                  = var.vnet_subnets
+  subnet_id                 = azurerm_subnet.subnets[each.value["name"]].id
+  network_security_group_id = azurerm_network_security_group.nsg[each.value["name"]].id
+  depends_on = [
+    azurerm_subnet.subnets,
+    azurerm_network_security_group.nsg
+  ]
+}
 #-----------------------------------------------------------------------------------
+
+

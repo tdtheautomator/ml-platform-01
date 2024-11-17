@@ -1,18 +1,39 @@
-output "ResourceGroupName" {
+
+output "_ResourceGroupName" {
   value = module.resourcegroup.resource-group-name
 }
-output "ResourceGroupLocation" {
+output "_ResourceGroupLocation" {
   value = module.resourcegroup.resource-group-location
 }
+
+output "_DatabricksWorkSpaceName" {
+  value = module.dbricks-workspace.databricks_workspace_name
+}
+
+output "_DatabricksWorkSpaceID" {
+  value = module.dbricks-workspace.databricks_workspace_id
+}
+
+/*
 
 output "VNetName" {
   value = module.networking.vnet-name
 }
 
-output "Subnets" {
-  value = module.networking.subnets
+output "DatabricksWorkSpaceID" {
+  value = module.dbricks-workspace.databricks_workspace_id
 }
 
-output "StorageAccount1" {
-  value = module.storage1.storage-account-name
+output "NSGs" {
+  value = module.networking.nsg_id
 }
+
+
+output "DatabricksSubnets" {
+  value = module.dbricks-subnets.databricks_subnet_id
+}
+
+output "DatabricksNSG" {
+  value = module.dbricks-subnets.databricks_subnet_nsg_id
+}
+*/

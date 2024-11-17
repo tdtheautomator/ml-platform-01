@@ -8,23 +8,22 @@ variable "rg_name" {
 }
 
 variable "default_tags" {
-type = map(string)
-default = null
+  type    = map(string)
+  default = null
 }
 
 variable "vnet_name" {
-  type    = string
+  type = string
 }
 
 variable "netwatch_name" {
-  type    = string
+  type = string
 }
 
 variable "vnet_address_space" {
-  type    = list(string)
+  type = list(string)
 }
 
 variable "vnet_subnets" {
-  type = map(any)
 }
 

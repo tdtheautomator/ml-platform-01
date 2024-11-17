@@ -24,23 +24,6 @@ module "networking" {
   ]
 }
 
-module "storage1" {
-  source                   = "../00.modules/storage/storage-account"
-  rg_name                  = module.resourcegroup.resource-group-name
-  location                 = module.resourcegroup.resource-group-location
-  default_tags             = local.default_tags
-  storage_acc_name         = join("", ["${lookup(local.region_shortname_map, var.location)}", "${var.environment}", "${var.department}", "${var.appname}", local.random_str_1, "sa1", ])
-  account_kind             = var.account_kind
-  account_tier             = var.account_tier
-  account_replication_type = var.account_replication_type
-  access_tier              = var.access_tier
-  hns_enabled              = var.hns_enabled
-  depends_on = [
-    module.resourcegroup,
-    module.networking
-  ]
-}
-
 module "dbricks-umi" {
   source                      = "../00.modules/security/managed-identity"
   rg_name                     = module.resourcegroup.resource-group-name
@@ -55,5 +38,55 @@ module "dbricks-access-connector" {
   location              = module.resourcegroup.resource-group-location
   default_tags          = local.default_tags
   access_connector_name = "${local.prefix}-dbricks-acc-conn"
-  umi_id      = module.dbricks-umi.uai_id
+  umi_id                = module.dbricks-umi.uai_id
 }
+
+module "dbricks-subnets" {
+  source          = "../00.modules/databricks/subnets"
+  rg_name         = module.resourcegroup.resource-group-name
+  location        = module.resourcegroup.resource-group-location
+  default_tags    = local.default_tags
+  dbricks_subnets = var.dbricks_subnets
+  vnet_name       = module.networking.vnet-name
+  depends_on = [
+    module.networking
+  ]
+}
+
+
+module "dbricks-workspace" {
+  source                      = "../00.modules/databricks/workspace"
+  dbricks_ws_name             = "${local.prefix}-dbricks-ws"
+  dbricks_sku                 = "trial"
+  rg_name                     = module.resourcegroup.resource-group-name
+  location                    = module.resourcegroup.resource-group-location
+  dbricks_access_connector_id = module.dbricks-access-connector.access_connector_id
+  dbricks_pub_subnet          = [for k in module.dbricks-subnets.subnets : k][0].name
+  dbricks_pvt_subnet          = [for k in module.dbricks-subnets.subnets : k][1].name
+  default_tags                = local.default_tags
+  vnet_id                     = module.networking.vnet-id
+  dbricks_pub_subnet_nsg_id   = [for v in module.dbricks-subnets.databricks_subnet_nsg_id : v][0]
+  dbricks_pvt_subnet_nsg_id   = [for v in module.dbricks-subnets.databricks_subnet_nsg_id : v][1]
+  depends_on = [
+    module.dbricks-subnets
+  ]
+}
+
+/*
+module "storage1" {
+  source                   = "../00.modules/storage/storage-account"
+  rg_name                  = module.resourcegroup.resource-group-name
+  location                 = module.resourcegroup.resource-group-location
+  default_tags             = local.default_tags
+  storage_acc_name         = join("", ["${var.environment}", "${var.department}", local.location_short, local.random_str_1, "sa1", ])
+  account_kind             = var.account_kind
+  account_tier             = var.account_tier
+  account_replication_type = var.account_replication_type
+  access_tier              = var.access_tier
+  hns_enabled              = var.hns_enabled
+  depends_on = [
+    module.resourcegroup,
+    module.networking
+  ]
+}
+*/
