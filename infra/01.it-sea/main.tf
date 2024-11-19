@@ -74,7 +74,7 @@ module "dbricks-workspace" {
 
 
 module "sales-model" {
-  source = "../00.modules/databricks/external-models"
+  source = "../00.modules/databricks/external-models-entraauth"
   clientId = var.clientId
   clientSecret = var.clientSecret
   tenantId = var.tenantId
