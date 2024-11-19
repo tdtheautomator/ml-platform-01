@@ -2,6 +2,7 @@
 **/.terraform/*
 .terraform/*
 versions.tf
+providers.tf
 # .tfstate files
 *.tfstate
 *.tfstate.*

@@ -72,6 +72,39 @@ module "dbricks-workspace" {
   ]
 }
 
+
+module "sales-model" {
+  source = "../00.modules/databricks/external-models"
+  clientId = var.clientId
+  clientSecret = var.clientSecret
+  tenantId = var.tenantId
+  model_serving_name = "sales-westeurope"
+  openai_api_base = "https://westeurope.api.cognitive.microsoft.com/"
+  model_deployment_name = "gpt-35-turbo"
+  openai_deployment_name = "gpt-35-turbo"
+  openai_api_version = "2024-05-01-preview"
+  depends_on = [ module.dbricks-workspace ]
+  providers = {
+    databricks.account = databricks.account
+    databricks.model_serving_ws = databricks.model_serving_ws
+  }
+}
+
+module "sales-model-localauth" {
+  source = "../00.modules/databricks/external-models-localauth"
+  open_api_key = var.open_api_key
+  model_serving_name = "sales-westeurope-localauth"
+  openai_api_base = "https://westeurope.api.cognitive.microsoft.com/"
+  model_deployment_name = "gpt-35-turbo"
+  openai_deployment_name = "gpt-35-turbo"
+  openai_api_version = "2024-05-01-preview"
+  depends_on = [ module.dbricks-workspace ]
+  providers = {
+    databricks.account = databricks.account
+    databricks.model_serving_ws = databricks.model_serving_ws
+  }
+}
+
 /*
 module "storage1" {
   source                   = "../00.modules/storage/storage-account"

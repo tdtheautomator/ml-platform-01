@@ -23,3 +23,19 @@ module "networking" {
     module.resourcegroup
   ]
 }
+
+module "openai" {
+  source                = "../00.modules/ai/open-ai"
+  rg_name               = module.resourcegroup.resource-group-name
+  location              = module.resourcegroup.resource-group-location
+  default_tags          = local.default_tags
+  cognitive_acount_name = "${local.prefix}-gpt35"
+  cognitive_deployment = {
+    gpt-35-turbo = {
+      cognitive_deployment_name = "gpt-35-turbo"
+      model_format              = "OpenAI"
+      model_name                = "gpt-35-turbo"
+      model_version             = "0301"
+    }
+  }
+}

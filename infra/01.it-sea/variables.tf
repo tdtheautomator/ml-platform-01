@@ -38,3 +38,21 @@ variable "account_tier" {}
 variable "account_replication_type" {}
 variable "access_tier" {}
 variable "hns_enabled" {}
+
+variable "clientId" {
+  default = null
+  sensitive = true
+}
+
+variable "clientSecret" {
+  default = null
+  sensitive = true
+}
+variable "open_api_key" {
+  default = null
+  sensitive = true
+}
+variable "tenantId" {
+  default = null
+  sensitive = true
+}

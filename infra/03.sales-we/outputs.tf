@@ -4,3 +4,8 @@ output "_ResourceGroupName" {
 output "_ResourceGroupLocation" {
   value = module.resourcegroup.resource-group-location
 }
+
+
+output "_OpenAIEndpoint" {
+  value = module.openai.cognitive_account_endpoint
+}

@@ -65,7 +65,6 @@ variable "cognitive_deployment" {
     rai_policy_name           = optional(string)
     version_upgrade_option    = optional(string, "OnceCurrentVersionExpired")
     deployment_sku_name       = optional(string, "Standard")
-    deployment_sku_tier       = optional(string, "Free")
     deployment_sku_capacity   = optional(number, 1)
   }))
 

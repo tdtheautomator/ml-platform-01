@@ -14,7 +14,7 @@ resource "azurerm_cognitive_account" "cognitive_acount" {
   identity {
     type = "SystemAssigned"
   }
-
+/*
   network_acls {
     default_action = "Deny"
     ip_rules       = var.allowed_cidrs
@@ -26,6 +26,7 @@ resource "azurerm_cognitive_account" "cognitive_acount" {
       }
     }
   }
+ */ 
   timeouts {
     create = "2h"
     update = "1h"
@@ -47,7 +48,6 @@ resource "azurerm_cognitive_deployment" "cognitive_deployment" {
   }
   sku {
     name     = each.value.deployment_sku_name
-    tier     = each.value.deployment_sku_tier
     capacity = each.value.deployment_sku_capacity
   }
 
