@@ -38,4 +38,5 @@ module "openai" {
       model_version             = "0301"
     }
   }
+  custom_subdomain_name = "${local.prefix}-gpt35"
 }

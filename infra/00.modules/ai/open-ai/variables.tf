@@ -67,5 +67,8 @@ variable "cognitive_deployment" {
     deployment_sku_name       = optional(string, "Standard")
     deployment_sku_capacity   = optional(number, 1)
   }))
+}
 
+variable "custom_subdomain_name" {
+  type = string
 }

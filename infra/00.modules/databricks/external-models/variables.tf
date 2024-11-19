@@ -1,6 +1,6 @@
 variable "task_type" {
     type = string
-    default = "llm/v1/chat"
+    default = "llm/v1/completions"
 }
 
 variable "model_serving_name" {}
