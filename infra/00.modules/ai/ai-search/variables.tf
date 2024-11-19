@@ -17,7 +17,7 @@ variable "ai_search_name" {
 }
 
 variable "ai_search_sku" {
-  default = "standard2"
+  default = "free"
 }
 
 variable "replica_count" {

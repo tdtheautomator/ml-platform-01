@@ -13,4 +13,10 @@ resource "azurerm_search_service" "ai_search" {
   identity {
     type = "SystemAssigned"
   }
+  timeouts {
+    create = "2h"
+    update = "1h"
+    delete = "1h"
+  }
+
 }

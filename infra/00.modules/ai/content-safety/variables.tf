@@ -15,10 +15,10 @@ variable "default_tags" {
 
 variable "cognitive_acount_name" {}
 variable "cognitive_acount_sku" {
-  default = "S0"
+  default = "F0"
 }
 variable "cognitive_acount_kind" {
-  default = "OpenAI"
+  default = "ContentSafety"
 }
 
 variable "virtual_network_rules" {
@@ -30,7 +30,7 @@ variable "virtual_network_rules" {
 }
 
 variable "allowed_cidrs" {
-  type    = list(string)
+  type    = list(strin)
   default = null
 }
 
