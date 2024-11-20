@@ -74,7 +74,7 @@ module "dbricks-workspace" {
 
 
 module "sales-model" {
-  source                 = "../00.modules/databricks/external-models-entraauth"
+  source                 = "../00.modules/databricks/external-models-entra-auth"
   clientId               = var.clientId
   clientSecret           = var.clientSecret
   tenantId               = var.tenantId
@@ -91,7 +91,7 @@ module "sales-model" {
 }
 
 module "sales-model-localauth" {
-  source                 = "../00.modules/databricks/external-models-localauth"
+  source                 = "../00.modules/databricks/external-models-local-auth"
   open_api_key           = var.open_api_key
   model_serving_name     = "sales-westeurope-localauth"
   openai_api_base        = "https://dev-sales-sap-gpt35.openai.azure.com/"
