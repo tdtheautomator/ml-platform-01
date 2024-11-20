@@ -40,19 +40,19 @@ variable "access_tier" {}
 variable "hns_enabled" {}
 
 variable "clientId" {
-  default = null
+  default   = null
   sensitive = true
 }
 
 variable "clientSecret" {
-  default = null
+  default   = null
   sensitive = true
 }
 variable "open_api_key" {
-  default = null
+  default   = null
   sensitive = true
 }
 variable "tenantId" {
-  default = null
+  default   = null
   sensitive = true
 }

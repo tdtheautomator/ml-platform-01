@@ -1,5 +1,5 @@
 variable "containers" {
-    type = list(string)
+  type = list(string)
 }
 
 variable "storage_account_id" {

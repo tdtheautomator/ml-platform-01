@@ -15,7 +15,7 @@ variable "default_tags" {
 #-----------------------------------------------------------
 
 variable "storage_acc_name" {
-  type    = string
+  type = string
 }
 
 variable "account_kind" {

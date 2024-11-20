@@ -14,6 +14,10 @@ output "_DatabricksWorkSpaceID" {
   value = module.dbricks-workspace.databricks_workspace_id
 }
 
+output "_DatabricksWorkSpaceURL" {
+  value = module.dbricks-workspace.databricks_workspace_url
+}
+
 /*
 
 output "VNetName" {

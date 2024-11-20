@@ -8,14 +8,14 @@ variable "rg_name" {
 }
 
 variable "default_tags" {
-  type = map(string)
+  type    = map(string)
   default = null
 }
 
 variable "access_connector_name" {
-  type    = string
+  type = string
 }
 
 variable "umi_id" {
-  type    = string
+  type = string
 }

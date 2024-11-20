@@ -3,11 +3,11 @@ variable "metastore_location" {
 }
 
 variable "metastore_container_name" {
-    type = string
+  type = string
 }
 
 variable "metastore_storage_account" {
-    type = string
+  type = string
 }
 
 variable "metastore_name" {
