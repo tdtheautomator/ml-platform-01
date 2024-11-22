@@ -56,3 +56,7 @@ variable "tenantId" {
   default   = null
   sensitive = true
 }
+
+variable "target_sub" {}
+variable "databricks_account_id" {}
+variable "model_serving_workspace" {}

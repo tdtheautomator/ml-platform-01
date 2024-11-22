@@ -30,3 +30,16 @@ variable "vnet_subnets" {
 }
 
 # -----------------------------------
+
+variable "target_sub" {
+  type = string
+  default = null
+}
+variable "databricks_account_id" {
+  type = string
+  default = null
+}
+variable "model_serving_workspace" {
+  type = string
+  default = null
+}
