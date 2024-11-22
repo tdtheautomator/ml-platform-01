@@ -18,7 +18,19 @@ output "_DatabricksWorkSpaceURL" {
   value = module.dbricks-workspace.databricks_workspace_url
 }
 
+
+output "_MetastoreStorageAccounts" {
+  value = module.dbricks-metastore.metastore-accounts
+}
+
 /*
+output "_MetastoreStorageAccounts" {
+  value = module.metastore-storage[*].storage-account-id
+}
+
+output "_MetastoreUserAssignedIdentity" {
+  value = module.uai-metastore[*].uai_principal_id
+}
 
 output "VNetName" {
   value = module.networking.vnet-name

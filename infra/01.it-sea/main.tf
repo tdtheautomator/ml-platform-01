@@ -72,6 +72,14 @@ module "dbricks-workspace" {
   ]
 }
 
+module "dbricks-metastore" {
+  source = "../00.modules/databricks/metastore"
+  locations = ["southeastasia","westeurope","westus"]
+  rg_name                     = module.resourcegroup.resource-group-name
+  default_tags                = local.default_tags
+ }
+
+
 
 module "sales-model" {
   source                 = "../00.modules/databricks/external-models-entra-auth"
@@ -105,7 +113,38 @@ module "sales-model-localauth" {
   }
 }
 
+
+
 /*
+
+module "uai-metastore" {
+  source = "../00.modules/security/managed-identity"
+  for_each = local.region_shortname_map
+  user_assigned_identity_name = "metastore-uai-${each.value}"
+  location = each.key
+  rg_name = module.resourcegroup.resource-group-name
+  default_tags = merge(local.default_tags,{usage="databricks-metastore"})
+}
+
+module "metastore-storage" {
+  source                   = "../00.modules/storage/storage-account"
+  for_each = local.region_shortname_map
+  rg_name                  = module.resourcegroup.resource-group-name
+  location                 = each.key
+  default_tags             = merge(local.default_tags,{usage="databricks-metastore"})
+  storage_acc_name         = join("", ["dbricksmeta", "${each.value}", local.random_str_1])
+  account_kind             = var.account_kind
+  account_tier             = var.account_tier
+  account_replication_type = var.account_replication_type
+  access_tier              = var.access_tier
+  hns_enabled              = var.hns_enabled
+  containers = ["metastore","archive"]
+  depends_on = [
+    module.resourcegroup,
+    module.networking
+  ]
+}
+
 module "storage1" {
   source                   = "../00.modules/storage/storage-account"
   rg_name                  = module.resourcegroup.resource-group-name
