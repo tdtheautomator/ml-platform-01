@@ -17,3 +17,10 @@ resource "azurerm_databricks_workspace" "databricks-workspace" {
     public_subnet_network_security_group_association_id  = var.dbricks_pub_subnet_nsg_id
   }
 }
+
+
+resource "databricks_metastore_assignment" "assign_metastore" {
+  provider = databricks.account
+  metastore_id = lookup(local.metastore_ids,"metastore_${var.location}")
+  workspace_id = azurerm_databricks_workspace.databricks-workspace.workspace_id
+}

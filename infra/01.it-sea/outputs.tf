@@ -6,6 +6,11 @@ output "_ResourceGroupLocation" {
   value = module.resourcegroup.resource-group-location
 }
 
+output "_DatabricksMetastoreIds" {
+  value = module.dbricks-metastore.databricks-metastore-ids
+}
+
+
 output "_DatabricksWorkSpaceName" {
   value = module.dbricks-workspace.databricks_workspace_name
 }

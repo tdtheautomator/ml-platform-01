@@ -44,3 +44,8 @@ variable "dbricks_access_connector_id" {
 variable "dbricks_ws_name" {
   type = string
 }
+
+variable "assigned_metastores" {
+  type = list(string)
+  default = null
+}

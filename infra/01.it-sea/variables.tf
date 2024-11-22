@@ -60,3 +60,4 @@ variable "tenantId" {
 variable "target_sub" {}
 variable "databricks_account_id" {}
 variable "model_serving_workspace" {}
+variable "databricks_config_file" {}

@@ -12,9 +12,10 @@ provider "azurerm" {
 
 provider "databricks" {
   alias      = "account"
-  host       = "http://accounts.azuredatabricks.net"
-  account_id = var.databricks_account_id
-  auth_type  = "azure-cli"
+  config_file = var.databricks_config_file
+  #host       = "http://accounts.azuredatabricks.net"
+  #account_id = var.databricks_account_id
+  #auth_type  = "azure-cli"
   #azure_client_id = var.clientId
   #azure_client_secret = var.clientSecret
   #azure_tenant_id = var.tenantId

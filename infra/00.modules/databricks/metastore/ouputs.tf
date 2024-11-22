@@ -1,13 +1,7 @@
-/*
-output "metastore_name" {
-  value = databricks_metastore.metastore.name
+data "databricks_metastores" "all" {
+  depends_on = [ databricks_metastore.metastore ]
 }
 
-output "metastore_id" {
-  value = databricks_metastore.metastore.id
-}
-*/
-
-output "metastore-accounts" {
-  value = local.storage_account_ids
+output "databricks-metastore-ids" {
+  value = data.databricks_metastores.all.ids
 }
