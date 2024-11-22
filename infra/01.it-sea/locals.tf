@@ -18,4 +18,7 @@ locals {
 
   dbricks_pub_subnet_nsg_name = "${local.prefix}-vnet-databricks-pub-nsg"
   dbricks_pvt_subnet_nsg_name = "${local.prefix}-vnet-databricks-pvt-nsg"
+  group_prefix = lower(join("-", ["${var.environment}", "${var.department}"]))
+  entra_groups = ["${local.group_prefix}-dbricks--acc-admins","${local.group_prefix}-dbricks-ws-admins",
+  "${local.group_prefix}-dbricks-ws-users","${local.group_prefix}-dbricks-model-query"]
 }

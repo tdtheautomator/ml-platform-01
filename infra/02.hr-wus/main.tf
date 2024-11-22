@@ -2,6 +2,11 @@ module "random_str1" {
   source = "../00.modules/core/random"
 }
 
+module "entra_groups" {
+  source = "../00.modules/entra/groups"
+  groups = local.entra_groups
+}
+
 module "resourcegroup" {
   source       = "../00.modules/core/rg"
   rg_name      = "${local.prefix}-rg"
