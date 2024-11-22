@@ -73,11 +73,14 @@ module "dbricks-workspace" {
 }
 
 module "dbricks-metastore" {
-  source = "../00.modules/databricks/metastore"
-  locations = ["southeastasia","westeurope","westus"]
-  rg_name                     = module.resourcegroup.resource-group-name
-  default_tags                = local.default_tags
- }
+  source       = "../00.modules/databricks/metastore"
+  locations    = ["southeastasia", "westeurope", "westus"]
+  rg_name      = module.resourcegroup.resource-group-name
+  default_tags = local.default_tags
+  providers = {
+    databricks.account          = databricks.account
+  }
+}
 
 
 

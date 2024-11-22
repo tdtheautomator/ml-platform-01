@@ -15,3 +15,10 @@ resource "azurerm_storage_account" "storageacc" {
   is_hns_enabled                  = var.hns_enabled
 }
 #--------------------------------------------------------------------
+
+resource "azurerm_storage_container" "containers" {
+  for_each              = toset(var.containers)
+  name                  = each.key
+  storage_account_id    = azurerm_storage_account.storageacc.id
+  container_access_type = "private"
+} 

@@ -44,4 +44,7 @@ variable "hns_enabled" {
   default = false
 }
 
+variable "containers" {
+  type = list(string)
+}
 #-----------------------------------------------------------

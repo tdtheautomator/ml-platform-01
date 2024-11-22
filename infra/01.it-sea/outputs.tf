@@ -19,11 +19,12 @@ output "_DatabricksWorkSpaceURL" {
 }
 
 
-output "_MetastoreStorageAccounts" {
+/*
+output "_MetastoreStorageAccountIds" {
   value = module.dbricks-metastore.metastore-accounts
 }
 
-/*
+
 output "_MetastoreStorageAccounts" {
   value = module.metastore-storage[*].storage-account-id
 }

@@ -1,19 +1,13 @@
-variable "metastore_location" {
-  type = string
+variable "locations" {
+  type    = list(string)
+  default = null
 }
 
-variable "metastore_container_name" {
-  type = string
+variable "rg_name" {
+  type    = string
+  default = null
 }
 
-variable "metastore_storage_account" {
-  type = string
-}
-
-variable "metastore_name" {
-  type = string
-}
-
-variable "databricks_admin" {
-  type = string
+variable "default_tags" {
+  type = map(string)
 }
