@@ -49,3 +49,11 @@ variable "assigned_metastores" {
   type = list(string)
   default = null
 }
+
+variable "workspace_admins" {
+  default = null
+}
+
+variable "workspace_users" {
+  default = null
+}

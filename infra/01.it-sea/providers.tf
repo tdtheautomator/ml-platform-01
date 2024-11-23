@@ -11,7 +11,7 @@ provider "azurerm" {
 }
 
 provider "databricks" {
-  alias      = "account"
+  alias       = "account"
   config_file = var.databricks_config_file
   #host       = "http://accounts.azuredatabricks.net"
   #account_id = var.databricks_account_id

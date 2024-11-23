@@ -2,9 +2,10 @@ module "random_str1" {
   source = "../00.modules/core/random"
 }
 
+
 module "entra_groups" {
   source = "../00.modules/entra/groups"
-  groups = local.entra_groups
+  groups = null #local.entra_groups
 }
 
 
@@ -44,7 +45,7 @@ module "dbricks-metastore" {
   rg_name      = module.resourcegroup.resource-group-name
   default_tags = local.default_tags
   providers = {
-    databricks.account          = databricks.account
+    databricks.account = databricks.account
   }
 }
 
@@ -83,12 +84,16 @@ module "dbricks-workspace" {
   vnet_id                     = module.networking.vnet-id
   dbricks_pub_subnet_nsg_id   = [for v in module.dbricks-subnets.databricks_subnet_nsg_id : v][0]
   dbricks_pvt_subnet_nsg_id   = [for v in module.dbricks-subnets.databricks_subnet_nsg_id : v][1]
+  workspace_admins            = ["${local.group_prefix}-dbricks-acc-admins", "${local.group_prefix}-dbricks-ws-admins"]
+  workspace_users             = ["${local.group_prefix}-dbricks-ws-users"]
   depends_on = [
     module.dbricks-subnets,
+    module.entra_groups,
     module.dbricks-metastore
   ]
   providers = {
     databricks.account          = databricks.account
+    databricks.model_serving_ws = databricks.model_serving_ws
   }
 }
 

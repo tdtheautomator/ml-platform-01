@@ -4,7 +4,7 @@ module "random_str1" {
 
 module "entra_groups" {
   source = "../00.modules/entra/groups"
-  groups = local.entra_groups
+  groups = null #local.entra_groups
 }
 
 module "resourcegroup" {

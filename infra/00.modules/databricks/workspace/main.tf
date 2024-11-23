@@ -20,7 +20,41 @@ resource "azurerm_databricks_workspace" "databricks-workspace" {
 
 
 resource "databricks_metastore_assignment" "assign_metastore" {
-  provider = databricks.account
+  provider = databricks.model_serving_ws
   metastore_id = lookup(local.metastore_ids,"metastore_${var.location}")
   workspace_id = azurerm_databricks_workspace.databricks-workspace.workspace_id
 }
+
+
+resource "databricks_group" "ws_admin_groups" {
+  for_each = var.workspace_admins == null ? [] : toset(var.workspace_admins)
+  provider = databricks.account
+  display_name = each.key
+  depends_on = [ data.databricks_metastores.all ]
+}
+
+
+resource "databricks_group" "ws_user_groups" {
+  for_each = var.workspace_users == null ? [] : toset(var.workspace_users)
+  provider = databricks.account
+  display_name = each.key
+  depends_on = [ data.databricks_metastores.all ]
+}
+
+
+resource "databricks_mws_permission_assignment" "ws_admins" {
+  for_each = var.workspace_admins == null ? [] : toset(var.workspace_admins)
+  provider = databricks.account
+  workspace_id = azurerm_databricks_workspace.databricks-workspace.workspace_id
+  principal_id = databricks_group.ws_admin_groups[each.key].id
+  permissions = ["ADMIN"]
+  }
+
+
+  resource "databricks_mws_permission_assignment" "ws_users" {
+  for_each = var.workspace_users == null ? [] : toset(var.workspace_users)
+  provider = databricks.account
+  workspace_id = azurerm_databricks_workspace.databricks-workspace.workspace_id
+  principal_id = databricks_group.ws_user_groups[each.key].id
+  permissions = ["USER"]
+  }
