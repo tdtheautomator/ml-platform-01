@@ -29,3 +29,12 @@ provider "databricks" {
   #azure_client_secret = var.clientSecret
   #azure_tenant_id = var.tenantId
 }
+
+provider "databricks" {
+  alias     = "target_databricks_ws"
+  host      = var.target_databricks_workspace
+  auth_type = "azure-cli"
+  #azure_client_id = var.clientId
+  #azure_client_secret = var.clientSecret
+  #azure_tenant_id = var.tenantId
+}

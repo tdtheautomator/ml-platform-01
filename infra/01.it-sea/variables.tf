@@ -61,3 +61,18 @@ variable "target_sub" {}
 variable "databricks_account_id" {}
 variable "model_serving_workspace" {}
 variable "databricks_config_file" {}
+
+#---------------------------Databricks Objects---------------------------
+
+variable "target_databricks_workspace" {
+  type = string
+}
+
+variable "notebooks" {
+    type = map(object({
+        content = string
+        path = string
+        language = string
+    }))
+    default = {}
+}

@@ -129,6 +129,16 @@ module "sales-model-localauth" {
   }
 }
 
+#-----------------Databricks OBjects-----------------
+
+module "dbricks-notebooks" {
+  source = "../00.modules/databricks-ws-objects/notebooks"
+  notebooks = var.notebooks
+  providers = {
+    databricks.target_databricks_ws = databricks.target_databricks_ws
+  }
+
+}
 
 /*
 module "storage1" {
