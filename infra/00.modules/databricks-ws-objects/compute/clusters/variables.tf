@@ -33,21 +33,3 @@ variable "clusters" {
   }))
   default = {}
 }
-
-variable "cluster_policy" {
-  type = map(object({
-    name        = string
-    description = string
-    policy      = any
-  }))
-  default = {}
-}
-
-variable "cluster_policy_over_ride" {
-  type = map(object({
-    name                 = string
-    family_id            = string
-    definition_overrides = any
-  }))
-  default = {}
-}

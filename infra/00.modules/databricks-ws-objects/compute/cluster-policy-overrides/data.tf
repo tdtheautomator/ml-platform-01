@@ -1,7 +1,4 @@
-/*
 data "databricks_cluster_policy" "default_cluster_policy" {
-  for_each =  toset(local.default_cluster_policies)
   provider = databricks.target_databricks_ws
-  name     = each.value
+  name     = var.builtin_policy_name
 }
-*/

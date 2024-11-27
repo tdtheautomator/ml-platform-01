@@ -69,10 +69,26 @@ variable "target_databricks_workspace" {
 }
 
 variable "notebooks" {
-    type = map(object({
-        content = string
-        path = string
-        language = string
-    }))
-    default = {}
+  type = map(object({
+    content  = string
+    path     = string
+    language = string
+  }))
+  default = {}
+}
+
+variable "cluster_policy" {
+  type = map(object({
+    name              = string
+    description       = string
+    policy_definition = any
+  }))
+  default = {}
+}
+
+variable "cluster_policy_override" {
+  type = map(object({
+    definition_overrides = any
+  }))
+  default = {}
 }

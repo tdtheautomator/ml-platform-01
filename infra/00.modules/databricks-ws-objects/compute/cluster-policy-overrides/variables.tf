@@ -8,11 +8,14 @@ variable "appname" {
   default = null
 }
 
-variable "cluster_policy" {
+variable "builtin_policy_name" {
+  type = string
+  default = "Personal Compute"
+}
+
+variable "cluster_policy_override" {
   type = map(object({
-    name              = string
-    description       = string
-    policy_definition = any
+    definition_overrides = any
   }))
   default = {}
 }

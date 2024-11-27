@@ -140,6 +140,26 @@ module "dbricks-notebooks" {
 
 }
 
+module "dbricks-cluster-policies" {
+  source = "../00.modules/databricks-ws-objects/compute/cluster-policies"
+  cluster_policy = var.cluster_policy
+  appname = var.appname
+  department = var.department
+  providers = {
+    databricks.target_databricks_ws = databricks.target_databricks_ws
+  }
+}
+
+module "dbricks-cluster-policy-ovrerride" {
+  source = "../00.modules/databricks-ws-objects/compute/cluster-policy-overrides"
+  cluster_policy_override =  var.cluster_policy_override
+  appname = var.appname
+  department = var.department
+  providers = {
+    databricks.target_databricks_ws = databricks.target_databricks_ws
+  }
+}
+
 /*
 module "storage1" {
   source                   = "../00.modules/storage/storage-account"
