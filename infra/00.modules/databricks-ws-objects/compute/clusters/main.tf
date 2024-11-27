@@ -5,7 +5,7 @@ resource "databricks_cluster" "cluster" {
   spark_version                = each.value.spark_version
   autotermination_minutes      = each.value.autotermination_minutes
   num_workers                  = each.value.cluster_mode == "single_node" ? 0 : each.value.num_workers
-  data_security_mode           = "USER_ISOLATION"
+  data_security_mode           = each.value.data_security_mode
   enable_elastic_disk          = each.value.enable_elastic_disk
   enable_local_disk_encryption = each.value.enable_local_disk_encryption
   spark_conf                   = merge(local.spark_config, each.value.spark_conf)
