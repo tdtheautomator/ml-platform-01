@@ -9,6 +9,11 @@ variable "appname" {
   default = null
 }
 
+variable "cluster_policy_name" {
+  type = string
+  default = "Personal Compute"
+}
+
 variable "clusters" {
   type = map(object({
     cluster_name                 = string
@@ -24,7 +29,7 @@ variable "clusters" {
     cluster_mode                 = string
     spark_conf                   = map(string)
     azure_attributes = object({
-      availibility       = string
+      availability       = string
       first_on_demand    = number
       spot_bid_max_price = number
     })
