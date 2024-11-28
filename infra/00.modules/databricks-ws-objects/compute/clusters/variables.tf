@@ -14,6 +14,16 @@ variable "cluster_policy_name" {
   default = "Personal Compute"
 }
 
+variable "worker_instance_pool_name" {
+  type = string
+  default = null
+}
+
+variable "driver_instance_pool_name" {
+  type = string
+  default = null
+}
+
 variable "clusters" {
   type = map(object({
     cluster_name                 = string

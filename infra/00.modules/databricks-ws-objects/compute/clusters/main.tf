@@ -9,10 +9,11 @@ resource "databricks_cluster" "cluster" {
   enable_elastic_disk          = each.value.enable_elastic_disk
   enable_local_disk_encryption = each.value.enable_local_disk_encryption
   spark_conf                   = merge(local.spark_config, each.value.spark_conf)
-  #instance_pool_id             = each.value.use_instance_pool_id ? databricks_instance_pool.instance_pool[each.value.instance_pool_key].id : null
-  node_type_id                 = each.value.use_instance_pool_id ? null : each.value.node_type_id
-  custom_tags                  = each.value.custom_tags
-  policy_id = data.databricks_cluster_policy.cluster_policy.id
+  #instance_pool_id             = data.databricks_instance_pool.instance_pool_name.id
+  #driver_instance_pool_id = data.databricks_instance_pool.driver_instance_pool_name.id
+  node_type_id = each.value.node_type_id
+  custom_tags  = each.value.custom_tags
+  policy_id    = data.databricks_cluster_policy.cluster_policy.id
   dynamic "autoscale" {
     for_each = each.value.cluster_mode == "single_node" ? [] : [1]
     content {

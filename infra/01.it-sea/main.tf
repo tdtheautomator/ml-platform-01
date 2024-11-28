@@ -155,6 +155,7 @@ module "dbricks-cluster-policy-ovrerride" {
   cluster_policy_override = var.cluster_policy_override
   appname                 = var.appname
   department              = var.department
+  builtin_policy_name = "Personal Compute"
   providers = {
     databricks.target_databricks_ws = databricks.target_databricks_ws
   }
@@ -170,16 +171,20 @@ module "dbricks-instance-pools" {
   }
 }
 
+/*
 module "clusters" {
   source     = "../00.modules/databricks-ws-objects/compute/clusters"
   clusters   = var.clusters
   appname    = var.appname
   department = var.department
+  cluster_policy_name = "Personal Compute"
+  #instance_pool_name = "it_support_single_node_instance_pool"
   providers = {
     databricks.target_databricks_ws = databricks.target_databricks_ws
   }
+  depends_on = [ module.dbricks-instance-pools ]
 }
-/*
+
 module "storage1" {
   source                   = "../00.modules/storage/storage-account"
   rg_name                  = module.resourcegroup.resource-group-name
