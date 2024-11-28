@@ -130,6 +130,7 @@ variable "clusters" {
     num_workers                  = number
     cluster_mode                 = string
     spark_conf                   = map(string)
+    data_security_mode = string
     azure_attributes = object({
       availability       = string
       first_on_demand    = number

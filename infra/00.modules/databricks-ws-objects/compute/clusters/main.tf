@@ -1,7 +1,7 @@
 resource "databricks_cluster" "cluster" {
   for_each                     = var.clusters == {} || var.clusters == null ? {} : var.clusters
   provider                     = databricks.target_databricks_ws
-  cluster_name                 = "${var.appname}_${each.value.cluster_name}"
+  cluster_name                 = "${var.department}_${var.appname}_${each.value.cluster_name}"
   spark_version                = each.value.spark_version
   autotermination_minutes      = each.value.autotermination_minutes
   num_workers                  = each.value.cluster_mode == "single_node" ? 0 : each.value.num_workers
